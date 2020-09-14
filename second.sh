@@ -1,16 +1,27 @@
-#!/bin/bash
-our_age=20
-# Now the question:
-echo "How old are you?"
-# Now in order to store something in a variable we use the command read:
-read answer
-# Now let's print it
-echo "You are" $answer "years old"
+echo "To ask for my age enter the command age"
 
-# -gt – numerically greater than … Other arguments are – -et(numerically equal), -lt (numerically less then).
-if [ $answer -gt $our_age ]
+read command
+
+if [ $command == "age" ]
 then
-  echo "You are older than me"
+  our_age=20
+  
+  echo "How old are you?"
+  read answer
+  
+  if [ -z $answer ]
+  then
+    echo "Please enter a valid age"
+  else
+    echo "You are" $answer "years old"
+    if [ $answer -gt $our_age ]
+    then 
+      echo "You are older than me"
+    else
+      echo "You are younger than me"
+    fi
+  fi
+
 else
-  echo "You are younger than me"
+echo "You can't use another commands at this time. Please check later."
 fi
